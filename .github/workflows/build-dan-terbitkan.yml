@@ -52,6 +52,11 @@ jobs:
               fs.writeFileSync('www/config.js',s);"
           fi
 
+      - name: Kecilkan app.js dan style.css (kode sumber di repo tetap terbaca)
+        run: |
+          npx --yes esbuild@0.25.0 www/app.js --minify --outfile=www/app.js --allow-overwrite
+          npx --yes esbuild@0.25.0 www/style.css --minify --outfile=www/style.css --allow-overwrite
+
       - name: Salin aplikasi ke Android
         run: |
           npm ci
